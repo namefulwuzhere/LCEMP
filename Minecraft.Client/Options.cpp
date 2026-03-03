@@ -19,21 +19,21 @@ const Options::Option Options::Option::options[17] =
 {
 	Options::Option(L"options.music", true, false),
 	Options::Option(L"options.sound", true, false),
-	Options::Option(L"options.invertMouse", false, true),
+	Options::Option(L"options.invertMouse", true, true),
 	Options::Option(L"options.sensitivity", true, false),
-	Options::Option(L"options.renderDistance", false, false),
+	Options::Option(L"options.renderDistance", true, false),
 	Options::Option(L"options.viewBobbing", false, true),
 	Options::Option(L"options.anaglyph", false, true),
 	Options::Option(L"options.advancedOpengl", false, true),
-	Options::Option(L"options.framerateLimit", false, false),
+	Options::Option(L"options.framerateLimit", true, false),
 	Options::Option(L"options.difficulty", false, false),
-	Options::Option(L"options.graphics", false, false),
+	Options::Option(L"options.graphics", true, false),
 	Options::Option(L"options.ao", false, true),
 	Options::Option(L"options.guiScale", false, false),
 	Options::Option(L"options.fov", true, false),
 	Options::Option(L"options.gamma", true, false),
-	Options::Option(L"options.renderClouds",false, true),
-	Options::Option(L"options.particles", false, false),
+	Options::Option(L"options.renderClouds",true, false),
+	Options::Option(L"options.particles", true, false),
 };
 
 const Options::Option *Options::Option::MUSIC = &Options::Option::options[0];
