@@ -78,7 +78,7 @@ void Player::_init()
 	minecartAchievementPos = NULL;
 
 
-	changingDimensionDelay = 20;
+	changingDimensionDelay = 0;
 
 
 	isInsidePortal = false;
@@ -149,7 +149,7 @@ Player::Player(Level *level) : Mob( level )
 	textureIdx = TN_MOB_CHAR; // 4J - was L"/mob/char.png";
 	m_skinIndex = eDefaultSkins_Skin0;
 	m_playerIndex = 0;
-	m_dwSkinId = 0;
+	m_dwSkinId = 1;
 	m_dwCapeId = 0;
 
 	// 4J Added
@@ -1345,6 +1345,7 @@ bool Player::hurt(DamageSource *source, int dmg)
 		if (level->difficulty == Difficulty::PEACEFUL) dmg = 0;
 		if (level->difficulty == Difficulty::EASY) dmg = dmg / 2 + 1;
 		if (level->difficulty == Difficulty::HARD) dmg = dmg * 3 / 2;
+		if (level->difficulty == Difficulty::LOL) dmg = dmg * 5000 / 2;
 	}
 
 	if (dmg == 0) return false;
