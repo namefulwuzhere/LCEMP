@@ -23,11 +23,11 @@ BasicTree::BasicTree(bool doUpdate) : Feature(doUpdate)
 	origin[1] = 0;
 	origin[2] = 0;
     // Field to hold the tree height.
-    height = 0;
+    height = 12;
     // Other important tree information.
-    trunkHeight = 0;
+    trunkHeight = 12;
     trunkHeightScale = 0.618;
-    branchDensity = 1.0;
+    branchDensity = 2.0;
     branchSlope = 0.381;
     widthScale = 1.0;
     foliageDensity = 1.0;
