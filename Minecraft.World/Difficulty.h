@@ -7,4 +7,5 @@ public:
     static const int EASY = 1;
     static const int NORMAL = 2;
     static const int HARD = 3;
+    static const int LOL = 4;
 };
