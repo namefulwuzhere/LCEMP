@@ -8,10 +8,10 @@
 #include "Inventory.h"
 
 const int Inventory::POP_TIME_DURATION = 5;
-const int Inventory::MAX_INVENTORY_STACK_SIZE = 64;
+const int Inventory::MAX_INVENTORY_STACK_SIZE = 67;
 
-const int Inventory::INVENTORY_SIZE = 4 * 9;
-const int Inventory::SELECTION_SIZE = 9;
+const int Inventory::INVENTORY_SIZE = 4 * 10;
+const int Inventory::SELECTION_SIZE = 10;
 
 // 4J Stu - The Pllayer is managed by shared_ptrs elsewhere, but it owns us so we don't want to also
 // keep a shared_ptr of it. If we pass it on we should use shared_from_this() though
