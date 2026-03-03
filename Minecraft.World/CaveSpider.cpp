@@ -47,6 +47,10 @@ bool CaveSpider::doHurtTarget(shared_ptr<Entity> target)
 			{
 				poisonTime = 15;
 			}
+			else if (level->difficulty == Difficulty::LOL)
+			{
+				poisonTime = 1000;
+			}
 
 			if (poisonTime > 0) {
 				dynamic_pointer_cast<Mob>(target)->addEffect(new MobEffectInstance(MobEffect::poison->id, poisonTime * SharedConstants::TICKS_PER_SECOND, 0));
