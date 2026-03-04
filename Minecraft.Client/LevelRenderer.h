@@ -50,7 +50,7 @@ public:
 #elif defined __PS3__
 	static const int MAX_COMMANDBUFFER_ALLOCATIONS = 110 * 1024 * 1024;		// 4J - added
 #elif defined _WINDOWS64
-	static const int MAX_COMMANDBUFFER_ALLOCATIONS = 2047 * 1024 * 1024;    // whisper - added (wow)
+	static const int MAX_COMMANDBUFFER_ALLOCATIONS = 2047 * 1024 * 1024;    // added
 #else
 	static const int MAX_COMMANDBUFFER_ALLOCATIONS = 55 * 1024 * 1024;		// 4J - added
 #endif
