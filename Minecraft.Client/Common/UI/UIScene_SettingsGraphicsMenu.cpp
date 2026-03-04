@@ -1,26 +1,34 @@
 #include "stdafx.h"
 #include "UI.h"
 #include "UIScene_SettingsGraphicsMenu.h"
-
+#include "..\..\Minecraft.h"
+#include "..\..\GameRenderer.h"
 UIScene_SettingsGraphicsMenu::UIScene_SettingsGraphicsMenu(int iPad, void *initData, UILayer *parentLayer) : UIScene(iPad, parentLayer)
 {
 	// Setup all the Iggy references we need for this scene
 	initialiseMovie();
 	
+	Minecraft *pMinecraft = Minecraft::GetInstance();
+
 	m_bNotInGame=(Minecraft::GetInstance()->level==NULL);
 
 	m_checkboxClouds.init(app.GetString(IDS_CHECKBOX_RENDER_CLOUDS),eControl_Clouds,(app.GetGameSettings(m_iPad,eGameSetting_Clouds)!=0));
 	m_checkboxBedrockFog.init(app.GetString(IDS_CHECKBOX_RENDER_BEDROCKFOG),eControl_BedrockFog,(app.GetGameSettings(m_iPad,eGameSetting_BedrockFog)!=0));
 	m_checkboxCustomSkinAnim.init(app.GetString(IDS_CHECKBOX_CUSTOM_SKIN_ANIM),eControl_CustomSkinAnim,(app.GetGameSettings(m_iPad,eGameSetting_CustomSkinAnim)!=0));
 
-	
 	WCHAR TempString[256];
+	swprintf( (WCHAR *)TempString, 256, L"Fullscreen");
+	m_checkboxFullscreen.init(TempString,eControl_Fullscreen,false);
+	
 	
 	swprintf( (WCHAR *)TempString, 256, L"%ls: %d%%", app.GetString( IDS_SLIDER_GAMMA ),app.GetGameSettings(m_iPad,eGameSetting_Gamma));	
 	m_sliderGamma.init(TempString,eControl_Gamma,0,100,app.GetGameSettings(m_iPad,eGameSetting_Gamma));
 	
 	swprintf( (WCHAR *)TempString, 256, L"%ls: %d%%", app.GetString( IDS_SLIDER_INTERFACEOPACITY ),app.GetGameSettings(m_iPad,eGameSetting_InterfaceOpacity));	
 	m_sliderInterfaceOpacity.init(TempString,eControl_InterfaceOpacity,0,100,app.GetGameSettings(m_iPad,eGameSetting_InterfaceOpacity));
+
+	swprintf( (WCHAR *)TempString, 256, L"FOV: %d", (int)pMinecraft->gameRenderer->GetFovVal());
+	m_sliderFov.init(TempString,eControl_FOV,40,120,(int)pMinecraft->gameRenderer->GetFovVal());
 
 	doHorizontalResizeCheck();
 	
@@ -107,6 +115,8 @@ void UIScene_SettingsGraphicsMenu::handleInput(int iPad, int key, bool repeat, b
 			app.SetGameSettings(m_iPad,eGameSetting_Clouds,m_checkboxClouds.IsChecked()?1:0);
 			app.SetGameSettings(m_iPad,eGameSetting_BedrockFog,m_checkboxBedrockFog.IsChecked()?1:0);
 			app.SetGameSettings(m_iPad,eGameSetting_CustomSkinAnim,m_checkboxCustomSkinAnim.IsChecked()?1:0);
+			
+			// toggle fullscreen stuff here
 
 			navigateBack();
 			handled = true;
@@ -148,6 +158,16 @@ void UIScene_SettingsGraphicsMenu::handleSliderMove(F64 sliderId, F64 currentVal
 		swprintf( (WCHAR *)TempString, 256, L"%ls: %d%%", app.GetString( IDS_SLIDER_INTERFACEOPACITY ),value);	
 		m_sliderInterfaceOpacity.setLabel(TempString);
 
+		break;
+	case eControl_FOV:
+		{
+			Minecraft *pMinecraft = Minecraft::GetInstance();
+			pMinecraft->gameRenderer->SetFovVal((float)currentValue);
+
+			WCHAR TempString[256];
+			swprintf( (WCHAR *)TempString, 256, L"FOV: %d", (int)currentValue);
+			m_sliderFov.setLabel(TempString);
+		}
 		break;
 	}
 }

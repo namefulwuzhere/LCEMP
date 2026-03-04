@@ -10,18 +10,22 @@ private:
 		eControl_Clouds,
 		eControl_BedrockFog,
 		eControl_CustomSkinAnim,
+		eControl_Fullscreen,
 		eControl_Gamma,
-		eControl_InterfaceOpacity
+		eControl_InterfaceOpacity,
+		eControl_FOV
 	};
 
-	UIControl_CheckBox m_checkboxClouds, m_checkboxBedrockFog, m_checkboxCustomSkinAnim; // Checkboxes
-	UIControl_Slider m_sliderGamma, m_sliderInterfaceOpacity; // Sliders
+	UIControl_CheckBox m_checkboxClouds, m_checkboxBedrockFog, m_checkboxCustomSkinAnim, m_checkboxFullscreen; // Checkboxes
+	UIControl_Slider m_sliderGamma, m_sliderInterfaceOpacity, m_sliderFov; // Sliders
 	UI_BEGIN_MAP_ELEMENTS_AND_NAMES(UIScene)
 		UI_MAP_ELEMENT( m_checkboxClouds, "Clouds")
 		UI_MAP_ELEMENT( m_checkboxBedrockFog, "BedrockFog")
 		UI_MAP_ELEMENT( m_checkboxCustomSkinAnim, "CustomSkinAnim")
+		UI_MAP_ELEMENT( m_checkboxFullscreen, "Fullscreen")
 		UI_MAP_ELEMENT( m_sliderGamma, "Gamma")
 		UI_MAP_ELEMENT( m_sliderInterfaceOpacity, "InterfaceOpacity")
+		UI_MAP_ELEMENT( m_sliderFov, "FOV")
 	UI_END_MAP_ELEMENTS_AND_NAMES()
 
 	bool m_bNotInGame;
